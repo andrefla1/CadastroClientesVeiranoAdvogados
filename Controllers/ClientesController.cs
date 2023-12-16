@@ -79,6 +79,20 @@ namespace SuaAplicacao.Controllers
                 return NotFound(); // Retorna um erro 404 se o cliente não for encontrado
             }
 
+            return View(cliente);
+        }
+
+
+        [HttpPost]
+        public IActionResult Excluir(Cliente _cliente)
+        {
+            var cliente = listaDeClientes.FirstOrDefault(c => c.Id == _cliente.Id);
+
+            if (cliente == null)
+            {
+                return NotFound(); // Retorna um erro 404 se o cliente não for encontrado
+            }
+
             listaDeClientes.Remove(cliente);
 
             return RedirectToAction("Index");
